@@ -1,7 +1,7 @@
 //PRod
-//var API_KEY = "d8cd30d93c9e4421b94176ed5cce4d08"
+var API_KEY = "d8cd30d93c9e4421b94176ed5cce4d08"
 //TEST
-var API_KEY = "193a94ff20a34d71aa6165cdbc3386ac"
+//var API_KEY = "193a94ff20a34d71aa6165cdbc3386ac"
 
 var Character = {
     displayName : "Undefined",
@@ -248,7 +248,7 @@ function addEmblemBackground(Character){
   var id = "index"+Character.index;
   document.getElementById(id).addEventListener('click',function(){
     console.log("Button was clicked"+id);
-    window.location.href = "https://destiny2-stats.glitch.me/Stats?membershipId="+Character.membershipId+"&characterId="+Character.characterId+"&platform="+Character.platform+"&name="+Character.displayName;
+    window.location.href = "https://destiny2stats.glitch.me/Stats.html?membershipId="+Character.membershipId+"&characterId="+Character.characterId+"&platform="+Character.platform+"&name="+Character.displayName;
   
   });
 
