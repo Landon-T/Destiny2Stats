@@ -1,3 +1,8 @@
+//PRod
+//var API_KEY = "d8cd30d93c9e4421b94176ed5cce4d08"
+//TEST
+var API_KEY = "193a94ff20a34d71aa6165cdbc3386ac"
+
 const MAP_SEARCH = 250;
   var Character = {
     displayName : "Undefined",
@@ -47,7 +52,7 @@ function getCharacterInfo(Character){
   console.log("Called Get Charactrer Info:   "+Character.characterId);
   $.ajax({
             url:"https://www.bungie.net/Platform/Destiny2/"+Character.platform+"/Profile/"+Character.membershipId+"/Character/"+Character.characterId+"/?components=200",
-            headers: {'X-API-KEY':'193a94ff20a34d71aa6165cdbc3386ac'},
+            headers: {'X-API-KEY':API_KEY},
             type: 'GET',
             error: function(jqXHR, textStatus, errorThrown) {
               console.log(jqXHR);
@@ -78,7 +83,7 @@ function getOverallStats(Character){
    
   $.ajax({
             url:"https://www.bungie.net/Platform/Destiny2/"+Character.platform+"/Account/"+Character.membershipId+"/Character/"+Character.characterId+"/Stats/?modes=5&groups=Weapons,General",
-            headers: {'X-API-KEY':'193a94ff20a34d71aa6165cdbc3386ac'},
+            headers: {'X-API-KEY':API_KEY},
             type: 'GET',
             error: function(jqXHR, textStatus, errorThrown) {
               console.log(jqXHR);
@@ -277,7 +282,7 @@ function getActivityHistory(Character){
    
   $.ajax({
             url:"https://www.bungie.net/Platform/Destiny2/"+Character.platform+"/Account/"+Character.membershipId+"/Character/"+Character.characterId+"/Stats/Activities/?mode=5&count="+ MAP_SEARCH,
-            headers: {'X-API-KEY':'193a94ff20a34d71aa6165cdbc3386ac'},
+            headers: {'X-API-KEY':API_KEY},
             type: 'GET',
             error: function(jqXHR, textStatus, errorThrown) {
               console.log(jqXHR);
@@ -333,7 +338,7 @@ async function getMapName(activityStats){
   //console.log("Calling get map name on: "+activityStats.referanceId)
   await $.ajax({           
             url:"https://www.bungie.net/Platform/Destiny2/Manifest/DestinyActivityDefinition/"+activityStats.referanceId+"/",
-            headers: {'X-API-KEY':'193a94ff20a34d71aa6165cdbc3386ac'},
+            headers: {'X-API-KEY':API_KEY},
             type: 'GET',
             error: function(jqXHR, textStatus, errorThrown) {
               console.log(jqXHR);
@@ -401,7 +406,7 @@ async function getMapStats(mapObject,instance){
     return await $.ajax({           
             //url:"https://www.bungie.net/Platform/Destiny2/Stats/PostGameCarnageReport/"+instance+"/",
             url:"https://stats.bungie.net/Platform/Destiny2/Stats/PostGameCarnageReport/"+instance+"/",
-            headers: {'X-API-KEY':'193a94ff20a34d71aa6165cdbc3386ac'},
+            headers: {'X-API-KEY':API_KEY},
             type: 'GET',
             crossDomain: true,
             //async: false,

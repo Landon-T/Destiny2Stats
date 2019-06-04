@@ -1,3 +1,8 @@
+//PRod
+//var API_KEY = "d8cd30d93c9e4421b94176ed5cce4d08"
+//TEST
+var API_KEY = "193a94ff20a34d71aa6165cdbc3386ac"
+
 var Character = {
     displayName : "Undefined",
     membershipId : "Undefined",
@@ -17,7 +22,7 @@ $(document).ready(function(){
     if(val.length > 3){
       $.ajax({
           url: "https://www.bungie.net/Platform/User/SearchUsers/?q="+val,
-          headers: {'X-API-KEY':'193a94ff20a34d71aa6165cdbc3386ac'},
+          headers: {'X-API-KEY':API_KEY},
           type: 'GET',
           error: function(jqXHR, textStatus, errorThrown) {
               console.log(jqXHR);
@@ -111,7 +116,7 @@ $(document).ready(function(){
 function getMembershipId(username){
 	$.ajax({
         url: "https://www.bungie.net/Platform/Destiny2/SearchDestinyPlayer/-1/"+username+"/",
-        headers: {'X-API-KEY':'193a94ff20a34d71aa6165cdbc3386ac'},
+        headers: {'X-API-KEY':API_KEY},
         type: 'GET',
         error: function(jqXHR, textStatus, errorThrown) {
             console.log(jqXHR);
@@ -135,7 +140,7 @@ function getCharacterId(Character){
    //console.log("https://www.bungie.net/Platform/Destiny2/4/Profile/"+Character.membershipId+"/?components=100");
   $.ajax({
         url: "https://www.bungie.net/Platform/Destiny2/"+Character.platform+"/Profile/"+Character.membershipId+"/?components=100",
-        headers: {'X-API-KEY':'193a94ff20a34d71aa6165cdbc3386ac'},
+        headers: {'X-API-KEY':API_KEY},
         type: 'GET',
         error: function(jqXHR, textStatus, errorThrown) {
             console.log(jqXHR);
@@ -170,7 +175,7 @@ function getCharacterInfo(Character,index){
    //console.log("https://www.bungie.net/Platform/Destiny2/4/Profile/"+Character.membershipId+"/Character/"+Character.characterId[0]+"/?components=200");
   $.ajax({
             url:"https://www.bungie.net/Platform/Destiny2/"+Character.platform+"/Profile/"+Character.membershipId+"/Character/"+Character.characterId[index]+"/?components=200",
-            headers: {'X-API-KEY':'193a94ff20a34d71aa6165cdbc3386ac'},
+            headers: {'X-API-KEY':API_KEY},
             type: 'GET',
             error: function(jqXHR, textStatus, errorThrown) {
               console.log(jqXHR);
