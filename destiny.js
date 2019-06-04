@@ -1,7 +1,7 @@
 //PRod
-//var API_KEY = "d8cd30d93c9e4421b94176ed5cce4d08"
+var API_KEY = "d8cd30d93c9e4421b94176ed5cce4d08"
 //TEST
-var API_KEY = "193a94ff20a34d71aa6165cdbc3386ac"
+//var API_KEY = "193a94ff20a34d71aa6165cdbc3386ac"
 
 const MAP_SEARCH = 250;
   var Character = {
@@ -50,6 +50,9 @@ $(document).ready(function(){
 
 function getCharacterInfo(Character){
   console.log("Called Get Charactrer Info:   "+Character.characterId);
+  console.log("here:");
+  console.log(Character);
+  console.log("what the heck");
   $.ajax({
             url:"https://www.bungie.net/Platform/Destiny2/"+Character.platform+"/Profile/"+Character.membershipId+"/Character/"+Character.characterId+"/?components=200",
             headers: {'X-API-KEY':API_KEY},
@@ -60,9 +63,9 @@ function getCharacterInfo(Character){
               console.log(errorThrown);
             },
             success: function(res) {
-             
-              Character.emblemBackground = "https://www.bungie.net"+res.Response.character.data.emblemBackgroundPath; 
 
+              Character.emblemBackground = "https://www.bungie.net"+res.Response.character.data.emblemBackgroundPath; 
+              console.log(res)
               addEmblemBackground(Character);
               getOverallStats(Character);
               getActivityHistory(Character);
