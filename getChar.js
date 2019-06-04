@@ -252,7 +252,10 @@ function addEmblemBackground(Character){
     //TEST
     //window.location.href = "https://destiny2stats.glitch.me/Stats.html?membershipId="+Character.membershipId+"&characterId="+Character.characterId+"&platform="+Character.platform+"&name="+Character.displayName;
     //Prod    https://nervous-fermi-739b06.netlify.com/
-    window.location.href = "https://nervous-fermi-739b06.netlify.com/Stats.html?membershipId="+Character.membershipId+"&characterId="+Character.characterId+"&platform="+Character.platform+"&name="+Character.displayName;
+    //window.location.href = "https://nervous-fermi-739b06.netlify.com/Stats.html?membershipId="+Character.membershipId+"&characterId="+Character.characterId+"&platform="+Character.platform+"&name="+Character.displayName;
+    
+    window.location.href = "/Stats.html?membershipId="+Character.membershipId+"&characterId="+Character.characterId+"&platform="+Character.platform+"&name="+Character.displayName;
+  
   });
 
 }
