@@ -111,4 +111,9 @@ input[type=submit] {
   font-size:50;
   color:cyan;
 }
+footer{
+  font-family:arial;
+  color: grey;
+  font-size:.75em;
+}
 
