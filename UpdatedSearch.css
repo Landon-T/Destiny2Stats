@@ -80,7 +80,7 @@ body{
   margin: 0;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-image: url("https://mir-s3-cdn-cf.behance.net/project_modules/1400/97091360740885.5a5792e8bd7a2.jpg");
+  /*background-image: url("https://mir-s3-cdn-cf.behance.net/project_modules/1400/97091360740885.5a5792e8bd7a2.jpg");*/
   background-color: rgb(0,0,0,1);
   text-align: center;  
   background-attachment: fixed;
@@ -165,4 +165,10 @@ h1{
   left:75%;
   font-size:50;
   color:cyan;
+}
+
+footer{
+  font-family:arial;
+  color: grey;
+  font-size:.75em;
 }
