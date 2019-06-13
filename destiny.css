@@ -367,5 +367,57 @@ footer{
 
 
 
+/* RESPONSIVE*/
+@media only screen and (max-width: 750px) {
+  h1{
+    background: grey;
+
+    padding: 1px;
+    margin: 1px;
+
+  }  
+  .column {
+  flex-grow: 1;
+  min-width: 200px;
+   
+    
+  margin: 1px;
+ 
+  }
+  
+  .row{
+  display: flex;
+  flex-wrap: wrap;
+
+  }
+  
+  .headerContainer{
+  min-width:200px;
+  background:rgb(211,211,211,.45);
+  background-size: 300px, 75px;
+  padding: 4px;
+  font-size: 1.2em; 
+  margin: 4px;
+  min-height: 85px;
+  display: flex;
+  color: white;
+}
+.statHeaderMap{
+  float: right;
+  text-align: right;
+  margin: 5px;
+  flex-grow: 1;
+}
+  .subHeader{
+  padding: 0px;
+  font-size: .55em; 
+  margin: 0px;
+
+}
+  
+  
+  
+
+}
 
 
