@@ -1,7 +1,7 @@
 //Prod
-//var API_KEY = "d8cd30d93c9e4421b94176ed5cce4d08"
+var API_KEY = "d8cd30d93c9e4421b94176ed5cce4d08"
 //TEST
-var API_KEY = "193a94ff20a34d71aa6165cdbc3386ac"
+//var API_KEY = "193a94ff20a34d71aa6165cdbc3386ac"
 
 //Determines how many games will be looked at for the per map statistics
 const MAP_SEARCH = 250;
