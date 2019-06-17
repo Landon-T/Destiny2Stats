@@ -11,6 +11,7 @@ var Character = {
     platform: "-1"
   };
 
+//Loads on document ready
 $(document).ready(function(){
 	var username;
   
@@ -19,6 +20,8 @@ $(document).ready(function(){
     var formReturn = $("form").serializeArray();
     var val = formReturn[0].value;
     //console.log(formReturn[0].value);
+    
+    //API call for partial matches
     if(val.length > 3){
       $.ajax({
           url: "https://www.bungie.net/Platform/User/SearchUsers/?q="+val,
@@ -112,7 +115,7 @@ $(document).ready(function(){
 
 
 
-
+//Each account has a membership id that links all the characters on that account
 function getMembershipId(username){
 	$.ajax({
         url: "https://www.bungie.net/Platform/Destiny2/SearchDestinyPlayer/-1/"+username+"/",
@@ -124,7 +127,8 @@ function getMembershipId(username){
             console.log(errorThrown);
         },
         success: function(res) {
-            console.log(res);
+            //console.log(res);
+            //Save membership id in the character object
             Character.displayName = res.Response[0].displayName;
             Character.membershipId = res.Response[0].membershipId;
             Character.platform = res.Response[0].membershipType
@@ -134,7 +138,7 @@ function getMembershipId(username){
 	});
 }
 
-
+//Use membership ID and platform to get the list of character ID's
 function getCharacterId(Character){
   console.log("Called Get Charactrer ID:  "+Character.membershipId);
    //console.log("https://www.bungie.net/Platform/Destiny2/4/Profile/"+Character.membershipId+"/?components=100");
@@ -148,19 +152,21 @@ function getCharacterId(Character){
             console.log(errorThrown);
         },
         success: function(res) {
+          
+            //Save a list of characters 
             Character.characterId = res.Response.profile.data.characterIds;
             Character.displayName = res.Response.profile.data.userInfo.displayName;
             //console.log("Character ID:  "+Character.characterId);
-            console.log(res.Response);
+            //console.log(res.Response);
             var emblems = document.getElementsByClassName("emblemContainer");
-            console.log("Length: "+emblems.length);
+            //console.log("Length: "+emblems.length);
             var size = emblems.length;
 
             for (var index = size-1; index >=0; index--) {
                         
               emblems[index].parentNode.removeChild(emblems[index]);
                         
-              console.log("removed: "+emblems[index]+"index is: "+index);
+              //console.log("removed: "+emblems[index]+"index is: "+index);
               emblems = document.getElementsByClassName("emblemContainer");
             }
             for (var i in Character.characterId){
@@ -170,6 +176,8 @@ function getCharacterId(Character){
     });
 }
 
+//takes an index to know which emblem container to use and character id to get information on
+// Gathers the emblem and charcater name information, and class
 function getCharacterInfo(Character,index){
   console.log("Called Get Charactrer Info:   "+Character.characterId[index]);
    //console.log("https://www.bungie.net/Platform/Destiny2/4/Profile/"+Character.membershipId+"/Character/"+Character.characterId[0]+"/?components=200");
@@ -209,7 +217,7 @@ function getCharacterInfo(Character,index){
                 index: index,
                 class: classType
               };
-              console.log(CharacterSample);
+              //console.log(CharacterSample);
               
               
               
@@ -224,7 +232,7 @@ function getCharacterInfo(Character,index){
         });
 }
 
-
+//Add the character information to the emblemContainer
 function addEmblemBackground(Character){
 
   
@@ -246,6 +254,7 @@ function addEmblemBackground(Character){
           </div>\
         </div> ');
   var id = "index"+Character.index;
+  //Click listener for each emblem that links to the character stats page
   document.getElementById(id).addEventListener('click',function(){
     console.log("Button was clicked"+id);
     
@@ -254,7 +263,7 @@ function addEmblemBackground(Character){
     //Prod    https://nervous-fermi-739b06.netlify.com/
     //window.location.href = "https://nervous-fermi-739b06.netlify.com/Stats.html?membershipId="+Character.membershipId+"&characterId="+Character.characterId+"&platform="+Character.platform+"&name="+Character.displayName;
     
-    window.location.href = "/Stats.html?membershipId="+Character.membershipId+"&characterId="+Character.characterId+"&platform="+Character.platform+"&name="+Character.displayName;
+    window.location.href = "/statsPage.html?membershipId="+Character.membershipId+"&characterId="+Character.characterId+"&platform="+Character.platform+"&name="+Character.displayName;
   
   });
 
