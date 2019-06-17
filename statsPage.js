@@ -1,17 +1,20 @@
 //Prod
-var API_KEY = "d8cd30d93c9e4421b94176ed5cce4d08"
+//var API_KEY = "d8cd30d93c9e4421b94176ed5cce4d08"
 //TEST
-//var API_KEY = "193a94ff20a34d71aa6165cdbc3386ac"
+var API_KEY = "193a94ff20a34d71aa6165cdbc3386ac"
 
+//Determines how many games will be looked at for the per map statistics
 const MAP_SEARCH = 250;
-  var Character = {
+
+var Character = {
     displayName : "Undefined",
     membershipId : "Undefined",
     characterId: "Undefined",
     emblemBackground: "Undefined",
     platform: "4"
-  };
+};
 
+//Get URL character information
 function getParameterByName(name, url) {
     if (!url) url = window.location.href;
     name = name.replace(/[\[\]]/g, '\\$&');
@@ -22,13 +25,16 @@ function getParameterByName(name, url) {
     return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
 
+//Load the google charts library
 google.charts.load('current', {'packages':['corechart']});
+
 $(document).ready(function(){
-  console.log("test1");
+  
   //Object contains all charcater information
   var Character = window.Character;
   var activityList;
   
+  //List of all maps
   var ActivityReferanceList = [3292922825, 2666761222, 2262757213, 2748633318, 1815340083, 1673114595, 3404623499, 3849796864, 1711620427, 750001803, 3164915257, 332234118, 2473919228, 4012915511, 806094750, 532383918, 399506119, 1153409123, 2810171920, 777592567, 778271008, 1583254851];
   var allPvP;
   
@@ -50,9 +56,7 @@ $(document).ready(function(){
 
 function getCharacterInfo(Character){
   console.log("Called Get Charactrer Info:   "+Character.characterId);
-  console.log("here:");
   console.log(Character);
-  console.log("what the heck");
   $.ajax({
             url:"https://www.bungie.net/Platform/Destiny2/"+Character.platform+"/Profile/"+Character.membershipId+"/Character/"+Character.characterId+"/?components=200",
             headers: {'X-API-KEY':API_KEY},
@@ -63,7 +67,7 @@ function getCharacterInfo(Character){
               console.log(errorThrown);
             },
             success: function(res) {
-
+              //get character emblem
               Character.emblemBackground = "https://www.bungie.net"+res.Response.character.data.emblemBackgroundPath; 
               console.log(res)
               addEmblemBackground(Character);
@@ -74,12 +78,14 @@ function getCharacterInfo(Character){
         });
 }
 
+
 function addEmblemBackground(Character){
   console.log("Add Emblem Path:  "+Character.emblemBackground);
   $("#Header").prepend('<img id="emblem" src="'+Character.emblemBackground+'"/>');
   $(".HeaderText").prepend('<b id="HeaderTextLine">'+Character.displayName.toUpperCase()+'</b>');
   $(".HeaderText").css("visibility", "visible");
 }
+
 
 function getOverallStats(Character){
   console.log("Called Get Charactrer Overall Stats:"+Character.characterId+" | "+Character.membershipId);
@@ -247,7 +253,7 @@ function PopulateWeaponStats(Character, allPvP){
   
   
   //console.log(weaponList);
-  //Out put the weapons tot he middle column
+  //Output the weapons to the middle column
   for (var weapon in OrderedWeaponList){
     //Sword and relic kills will be undeinfed use this to catch them
     if( typeof OrderedWeaponList[weapon].pKills == 'undefined'){
