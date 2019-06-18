@@ -48,7 +48,54 @@ $(document).ready(function(){
   Character.characterId = getParameterByName("characterId");
   getCharacterInfo(Character);
   
+  var generalIsHidden = false;
+  var weaponIsHidden = false;
+  var mapIsHidden = false;
   
+  document.getElementsByClassName('upArrow')[0].addEventListener('click', function (event) {
+    var element = document.getElementById("generalArrow");
+    if (generalIsHidden == true){
+      document.getElementById("generalAppend").style.display = "";  
+      generalIsHidden = false;
+      element.classList.remove("downArrow");
+      element.classList.add("upArrow");
+    }else{
+      document.getElementById("generalAppend").style.display = "none";  
+      generalIsHidden = true;
+      element.classList.remove("upArrow");
+      element.classList.add("downArrow");
+    } 
+  });
+  
+    document.getElementsByClassName('upArrow')[1].addEventListener('click', function (event) {
+    var element = document.getElementById("weaponArrow");
+    if (generalIsHidden == true){
+      document.getElementById("weaponAppend").style.display = "";  
+      generalIsHidden = false;
+      element.classList.remove("downArrow");
+      element.classList.add("upArrow");
+    }else{
+      document.getElementById("weaponAppend").style.display = "none";  
+      generalIsHidden = true;
+      element.classList.remove("upArrow");
+      element.classList.add("downArrow");
+    } 
+  });
+  
+    document.getElementsByClassName('upArrow')[2].addEventListener('click', function (event) {
+    var element = document.getElementById("mapArrow");
+    if (generalIsHidden == true){
+      document.getElementById("mapAppend").style.display = "";  
+      generalIsHidden = false;
+      element.classList.remove("downArrow");
+      element.classList.add("upArrow");
+    }else{
+      document.getElementById("mapAppend").style.display = "none";  
+      generalIsHidden = true;
+      element.classList.remove("upArrow");
+      element.classList.add("downArrow");
+    } 
+  });
   
 });
 

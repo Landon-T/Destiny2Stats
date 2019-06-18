@@ -365,7 +365,41 @@ footer{
   font-size:.75em;
 }
 
+/* ARROWS */
+.upArrow {
+  transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+    border: solid white;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 4px;
+  margin-left: 20px;
 
+  text-align:right;
+}
+
+.downArrow {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+    border: solid white;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 4px;
+  margin-left: 20px;
+
+  text-align:right;
+}
+/*
+i {
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 4px;
+  margin-left: 20px;
+
+  text-align:right;
+}
+*/
 
 /* RESPONSIVE*/
 @media only screen and (max-width: 750px) {
