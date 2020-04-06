@@ -1,7 +1,7 @@
 //Prod
-var API_KEY = "d8cd30d93c9e4421b94176ed5cce4d08"
+//var API_KEY = "d8cd30d93c9e4421b94176ed5cce4d08"
 //TEST
-//var API_KEY = "193a94ff20a34d71aa6165cdbc3386ac"
+var API_KEY = "193a94ff20a34d71aa6165cdbc3386ac"
 
 //Determines how many games will be looked at for the per map statistics
 const MAP_SEARCH = 250;
@@ -55,15 +55,21 @@ $(document).ready(function(){
   document.getElementsByClassName('upArrow')[0].addEventListener('click', function (event) {
     var element = document.getElementById("generalArrow");
     if (generalIsHidden == true){
-      document.getElementById("generalAppend").style.display = "";  
+      document.getElementById("generalAppend").style.display = "";
+      //$('.general-append').toggleClass('general-append-hide');
+      
       generalIsHidden = false;
-      element.classList.remove("downArrow");
-      element.classList.add("upArrow");
+      //element.classList.remove("downArrow");
+      //element.classList.add("upArrow");
+      $('.transform').toggleClass('upArrow-active');
     }else{
       document.getElementById("generalAppend").style.display = "none";  
+      //$('.general-append').toggleClass('general-append-hide');
+      //$('.general-append').css('animation-name','general-append-hide');
       generalIsHidden = true;
-      element.classList.remove("upArrow");
-      element.classList.add("downArrow");
+      //element.classList.remove("upArrow");
+      //element.classList.add("downArrow");
+      $('.transform').toggleClass('upArrow-active');
     } 
   });
   
