@@ -14,17 +14,21 @@ var Character = {
 //Loads on document ready
 $(document).ready(function(){
 	var username;
-  
+  var platform;
+  var membershipId;
   //Input listener for the search bar to auto complete
   document.getElementById("userSearchBar").addEventListener("input", function(){
     var formReturn = $("form").serializeArray();
     var val = formReturn[0].value;
     //console.log(formReturn[0].value);
+    var selector = document.getElementById("platformInput")
+    platform = selector.value
+    console.log("SELCTED PLATFORM: "+platform)
     
     //API call for partial matches
     if(val.length > 3){
       $.ajax({
-          url: "https://www.bungie.net/Platform/User/SearchUsers/?q="+val,
+          url: "https://www.bungie.net/Platform/Destiny2/SearchDestinyPlayer/"+platform+"/"+val+"/",
           headers: {'X-API-KEY':API_KEY},
           type: 'GET',
           error: function(jqXHR, textStatus, errorThrown) {
@@ -44,8 +48,14 @@ $(document).ready(function(){
               for (var i = 0; i < Math.min(arr.length, 6); i++) {
               /*check if the item starts with the same letters as the text field value:*/
                 var name;
-                if (arr[i].blizzardDisplayName != null){
-                  name = arr[i].blizzardDisplayName;
+                var memType = arr[i].membershipType
+                /* Blizzard display name is depreciated, all acoouts are on PSN, Xbox or steam*/
+                if (arr[i].steamDisplayName != null){
+                  name = arr[i].steamDisplayName;
+                }else if(arr[i].xboxDisplayName != null){
+                  name = arr[i].xboxDisplayName;
+                }else if(arr[i].psnDisplayName != null){
+                  name = arr[i].psnDisplayName;
                 }else{
                   name = arr[i].displayName;
                 }
@@ -55,8 +65,18 @@ $(document).ready(function(){
                   /*make the matching letters bold:*/
                   b.innerHTML = "<strong>" + name.substr(0, val.length) + "</strong>";
                   b.innerHTML += name.substr(val.length);
+                  /*add where account is from (PSN Xbx Steam)*/
+                  if (memType == 1){
+                    b.innerHTML += " | Xbox"
+                  }
+                  if (memType == 2){
+                    b.innerHTML += " | PSN"
+                  }
+                  if (memType == 3){
+                    b.innerHTML += " | Steam"
+                  }
                   /*insert a input field that will hold the current array item's value:*/
-                  b.innerHTML += "<input type='hidden' value='" + name + "'>";
+                  b.innerHTML += "<input type='hidden' value='" + name +"'>";
                   /*execute a function when someone clicks on the item value (DIV element):*/
                   b.addEventListener("click", function(e) {
                     /*insert the value for the autocomplete text field:*/
@@ -89,8 +109,12 @@ $(document).ready(function(){
 
 
       var formReturn = $("form").serializeArray();
+    
     	username = formReturn[0].value;
-    	
+      //console.log(formReturn)
+
+      
+
     
         //Check string for the '#' character and replace it with '%23'
     	for (var i = 0; i < username.length; i++) {
@@ -107,7 +131,7 @@ $(document).ready(function(){
         
       }
       
-      getMembershipId(username);
+      getMembershipId(username, platform);
     });
     
 });
@@ -116,9 +140,10 @@ $(document).ready(function(){
 
 
 //Each account has a membership id that links all the characters on that account
-function getMembershipId(username){
+
+function getMembershipId(username, platform){
 	$.ajax({
-        url: "https://www.bungie.net/Platform/Destiny2/SearchDestinyPlayer/-1/"+username+"/",
+        url: "https://www.bungie.net/Platform/Destiny2/SearchDestinyPlayer/"+platform+"/"+username+"/",
         headers: {'X-API-KEY':API_KEY},
         type: 'GET',
         error: function(jqXHR, textStatus, errorThrown) {
@@ -127,7 +152,7 @@ function getMembershipId(username){
             console.log(errorThrown);
         },
         success: function(res) {
-            //console.log(res);
+            console.log(res);
             //Save membership id in the character object
             Character.displayName = res.Response[0].displayName;
             Character.membershipId = res.Response[0].membershipId;
@@ -137,6 +162,7 @@ function getMembershipId(username){
         }
 	});
 }
+
 
 //Use membership ID and platform to get the list of character ID's
 function getCharacterId(Character){
